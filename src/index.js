@@ -1,11 +1,12 @@
 import { debounce } from 'lodash';
 import './styles.css';
 import countriesList from './templates/countries-list.hbs'
+import countryCard from './templates/country-card.hbs'
 import '@pnotify/core/dist/BrightTheme.css';
 import { alert, notice, info, success, error} from '@pnotify/core';
 
 
-
+console.log(countryCard);
 
 
 console.log(countriesList);
@@ -37,20 +38,24 @@ function fetchCountriesList(e) {
     else {
         fetchCountries(name).then(countries => {
             if (countries.length === 1) {
-                console.log('хуй йобаний');
+                makeCountryCard(countries[0]);
             }
             else if (countries.length > 10) {
-                alert('There is too much countries found. Please enter more symbols')
-                console.dir(alert)
+                console.log('library');
             }
             else {
                 makeCountryMarkupList(countries)
+                
                 
             }
         })
     }
     
 
+}
+
+function makeCountryCard(country) {
+     refs.countriesField.innerHTML = countryCard(country)
 }
 
         
